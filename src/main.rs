@@ -59,3 +59,18 @@ fn update_grid(grid: &mut Vec<Vec<i8>>) {
     }
     *grid = new_grid;
 }
+
+/// Displays the grid with square blocks
+fn display_grid(grid: &mut Vec<Vec<i8>>) {
+    for row in grid.iter() {
+        println!();
+        for elt in row.iter() {
+            if *elt == 0 {
+                print!("□ ");
+            } else {
+                print!("■ ")
+            }
+        }
+    }
+    println!();
+}
