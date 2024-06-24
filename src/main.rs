@@ -1,4 +1,5 @@
 use rand::{self, Rng};
+use std::{thread, time::Duration};
 
 /// Returns a 2d vector of size w x h filled with 0s
 fn empty_grid(w: usize, h: usize) -> Vec<Vec<i8>> {
@@ -73,4 +74,15 @@ fn display_grid(grid: &mut Vec<Vec<i8>>) {
         }
     }
     println!();
+}
+
+/// Main function: plays a random 20x10 grid 100 times
+fn main() {
+    let mut grid = empty_grid(20, 10);
+    randomize_grid(&mut grid);
+    for _ in 0..100 {
+        display_grid(&mut grid);
+        update_grid(&mut grid);
+        thread::sleep(Duration::from_millis(1000));
+    }
 }
