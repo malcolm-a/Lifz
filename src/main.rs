@@ -1,3 +1,5 @@
+use rand::{self, Rng};
+
 /// Returns a 2d vector of size w x h filled with 0s
 fn empty_grid(w: usize, h: usize) -> Vec<Vec<i8>> {
     return vec![vec![0i8; w]; h];
