@@ -41,3 +41,21 @@ fn neighbors(grid: &Vec<Vec<i8>>, x: usize, y: usize) -> i8 {
     }
     count
 }
+
+/// Updates the grid to its next state
+fn update_grid(grid: &mut Vec<Vec<i8>>) {
+    let mut new_grid = grid.clone();
+    for x in 0..grid.len() {
+        for y in 0..grid[x].len() {
+            let alive_neighbors = neighbors(&grid, x, y);
+            if alive_neighbors == 2 {
+                continue;
+            } else if alive_neighbors == 3 {
+                birth(&mut new_grid, x, y);
+            } else {
+                kill(&mut new_grid, x, y);
+            }
+        }
+    }
+    *grid = new_grid;
+}
