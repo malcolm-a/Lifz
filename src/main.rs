@@ -21,3 +21,21 @@ fn birth(grid: &mut Vec<Vec<i8>>, x: usize, y: usize) {
 fn kill(grid: &mut Vec<Vec<i8>>, x: usize, y: usize) {
     grid[x][y] = 0;
 }
+
+/// Returns the number of alive neighbors
+fn neighbors(grid: &Vec<Vec<i8>>, x: usize, y: usize) -> i8 {
+    let mut count = 0;
+    let dx: [i32; 3] = [-1, 0, 1];
+    let dy: [i32; 3] = [-1, 0, 1];
+
+    for &i in dx.iter() {
+        for &j in dy.iter() {
+            if i != 0 || j != 0 {
+                let nx = ((x as i32 + i + grid.len() as i32) % grid.len() as i32) as usize;
+                let ny = ((y as i32 + j + grid[0].len() as i32) % grid[0].len() as i32) as usize;
+                count += grid[nx][ny];
+            }
+        }
+    }
+    count
+}
